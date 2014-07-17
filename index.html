@@ -158,19 +158,29 @@
 				font-family: 'Roboto Slab';
 			}
 
+
+
 		      .card {
 		        width: 450px;
 		        padding:0px;
+		        margin-top: 20px;
 		        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 		        background-color:white; 
 		        text-align: left;
 		        font-family: 'Roboto Slab';
 		        overflow:scroll;
+		      
+			   white-space: pre-wrap;      /* CSS3 */   
+			   white-space: -moz-pre-wrap; /* Firefox */    
+			   white-space: -pre-wrap;     /* Opera <7 */   
+			   white-space: -o-pre-wrap;   /* Opera 7 */    
+			   word-wrap: break-word;      /* IE */
+
 
 		      }
 
 		      .card h3 {
-		        padding:20px 20px 0px 20px;
+		        padding:10px 20px 0px 20px;
 		        font-weight:bold;
 		        text-transform:uppercase
 
@@ -214,6 +224,7 @@
 		      .postTitle {
 		      	padding:10px 20px 0px 20px;
 		      	font-weight: bold;
+		      	width:100%;
 		      }
 
 		      #dropZoneArea {
@@ -420,12 +431,13 @@
 			function cancelCreatePost() {
 				console.log("Post was successfully canceled.")
 				$(".postView").remove();
-				$("#header").append('<div class="postView"><center><div class=\"feed\"><div class="card"><input type="text" class="postTitle" placeholder="Title of your post"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today?" maxlength="1000"></textarea><hr /><br /><center><div id="drop_zone"><br />Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center></div>');
-				$("#header").append('<script type="text/javascript"\>var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); publicFeed.on(\'child_added\', function (snapshot) { alert(snapshot.val()); }); <\/script>')
+				$("#header").append('<div class="postView"><center><div class=\"feed\"><div class="card"><input type="text" class="postTitle" placeholder="Title of your post" maxlength="100"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today? (140 characters max)" maxlength="140"></textarea><hr /><br /><center><div id="drop_zone"><br />Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>');
+				$("#header").append('<script type="text/javascript"\>var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); publicFeed.on(\'child_added\', function (snapshot) { if (snapshot.val().type == "text") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><p style="color:black;" class="displayContent">\' + snapshot.val().content + \'</p></div>\'); } else if (snapshot.val().type == "image") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><img src="\' + snapshot.val().content + \'"/></div>\'); } }); <\/script>');
 
 			}
 
 			function postMoment() {
+				// alert("Hi");
 				var feed = new Firebase('https://momentum-db.firebaseio.com/feed/');
 				var personalFeed = new Firebase ('https://momentum-db.firebaseio.com/users/' + loggedInUserName + '/feed');
 
@@ -439,18 +451,24 @@
 
 					var alreadyPushed = false;
 
-					if ($("textarea").is(":visible") == true && postContent.length != 0) {
-						if (alreadyPushed == false) {
+					if ($("textarea").is(":visible") == true) {
+						if (alreadyPushed == false && postContent.length != 0) {
 							alreadyPushed = true;
 		                	feed.push({"title": postTitle, "content": postContent, "date": date, "type": "text", "likes": 0});
 		                	personalFeed.push({"title": postTitle, "content": postContent, "date": date, "type": "text", "likes": 0});
+
+		                	cancelCreatePost();
+
 	                	}
 
 	            	} else {
+	            		// alert("what");
 	            		if (alreadyPushed == false) {
 	            			alreadyPushed = true;
 		            		feed.push({"title": postTitle, "content": image, "date": date, "type": "image", "likes": 0});
 		                	personalFeed.push({"title": postTitle, "content": image, "date": date, "type": "image", "likes": 0});
+
+		                	cancelCreatePost();
 	                	}
 
 	            	}
@@ -469,8 +487,8 @@
 				$(".logIn").hide();
 				// $("#header").append("<hr style=\"width:80%\" />");
 				$(".subTitleString").html("Welcome, @" + loggedInUserName);
-				$("#header").append('<div class="postView"><center><div class=\"feed\"><div class="card"><input type="text" class="postTitle" placeholder="Title of your post"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today?" maxlength="1000"></textarea><hr /><br /><center><div id="drop_zone"><br />Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center></div>');
-				$("#header").append('<script type="text/javascript"\>var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); publicFeed.on(\'child_added\', function (snapshot) { if (snapshot.val().type == "text") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><p style="color:black;" class="displayContent">\' + snapshot.val().content + \'</p></div>\'); } }); <\/script>')
+				$("#header").append('<div class="postView"><center><div class=\"feed\"><div class="card"><input type="text" class="postTitle" placeholder="Title of your post" maxlength="100"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today? (140 characters max)" maxlength="140"></textarea><hr /><br /><center><div id="drop_zone"><br />Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>');
+				$("#header").append('<script type="text/javascript"\>var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); publicFeed.on(\'child_added\', function (snapshot) { if (snapshot.val().type == "text") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><p style="color:black;" class="displayContent">\' + snapshot.val().content + \'</p></div>\'); } else if (snapshot.val().type == "image") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><img src="\' + snapshot.val().content + \'"/></div>\'); } }); <\/script>');
 
 				var dropZone = document.querySelector('#drop_zone');
 			  	dropZone.addEventListener('dragover', handleDragOver, false);
@@ -524,7 +542,7 @@
 
 				          imageUploadedString = e.target.result;
 
-				          document.getElementById('list').insertBefore(span, null);
+				          // document.getElementById('list').insertBefore(span, null);
 				        };
 				      })(f);
 
