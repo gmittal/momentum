@@ -1,12 +1,8 @@
 # Momentum
-Basic anonymous social network built on top of Firebase.
+Basic anonymous social network built using Firebase.
 
 ### Setup
-Navigate to the app static files.
-```
-$ cd app
-```
-Serve them up.
+Momentum is static. Therefore, any static web server should work in order to run the app.
 ```
 $ python -m SimpleHTTPServer
 ```
