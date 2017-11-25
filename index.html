@@ -20,7 +20,7 @@
     <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
 
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- SEO: If your mobile URL is different from the desktop URL, add a canonical link to the desktop page https://developers.google.com/webmasters/smartphone-sites/feature-phones -->
     <!--
@@ -28,17 +28,15 @@
     -->
 
     <!-- build:css styles/components/main.min.css -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-
-
-
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script src="js/dropzone.js"></script>
 
     <link rel="stylesheet" href="styles/h5bp.css">
@@ -54,8 +52,7 @@
         font-family:'Roboto Slab';
       }
 
-            .primary-btn {
-
+      .primary-btn {
         padding: 20px 30px 20px 30px;
         font-size: 15pt;
         border:1px solid white;
@@ -84,7 +81,6 @@
         border-radius: 50%;
         box-shadow:
           0 0 0 5px hsl(168, 75.8%, 35.7%);
-            /*0 0 0 15px hsl(0, 0%, 90%);*/
       }
 
       .cancel-btn {
@@ -100,21 +96,9 @@
         font-size: 12pt;
         border-radius: 50%;
         box-shadow:
-          0 0 0 5px rgb(192, 57, 43) /*hsl(168, 75.8%, 35.7%)*/;
-            /*0 0 0 15px hsl(0, 0%, 90%);*/
+          0 0 0 5px rgb(192, 57, 43);
       }
 
-/*      .post-btn:before {
-         content: " ";
-         position: absolute;
-         z-index: -1;
-         top: 5px;
-         left: 5px;
-         right: 5px;
-         bottom: 5px;
-         border: 5px solid #16a085;
-      }
-*/
       .primary-btn:hover {
         background-color: white;
         color:black;
@@ -140,7 +124,6 @@
       } 
 
       input {
-        /*height: 40px;*/
         padding: 20px;
         width: 300px;
         border-radius: 10px;
@@ -157,19 +140,16 @@
       input:focus {
         outline-style: none;
         outline-color: transparent;
-        /*background-color: 3px solid #16a085;*/
       }
 
       button:focus {
         outline-style: none;
         outline-color: transparent;
-        /*background-color: 3px solid #16a085;*/
       }
 
       .err {
         color:red;
         font-size: 15pt;
-        /*margin-top:20px;*/
         font-weight: bold;
         font-family: 'Roboto Slab';
       }
@@ -348,7 +328,6 @@
   <body style="background-color:#ecf0f1;">
     <header class="app-bar promote-layer" style="background-color:#34495e;">
       <div class="app-bar-container" style="background-color:#34495e;">
-        <!-- <button class="menu"><img src="images/hamburger.svg" alt="Menu"></button> -->
         <h1 class="logo"><b>momentum</b></h1>
         <section class="app-bar-actions">
         <!-- Put App Bar Buttons Here -->
@@ -361,7 +340,6 @@
       <ul>
         <li><a href="#" onclick="location.reload();">Feed</a></li>
         <li><a href="#">@<span id="navUsername">username</span></a></li>
-        <!-- <li><a href="styleguide/index.html">Style Guide</a></li> -->
       </ul>
     </nav>
 
@@ -369,7 +347,6 @@
 
     <center>
       <div id="header">
-      <!-- <a class="logout" style="float:right;">LOG OUT</a><br /> -->
             <nav class="startButtons" style="margin-top:10px;">
               <h2><b>Capture that one moment.</b><br />Share it with the world.</h2>
               <p align="justify">Momentum is a new kind of anonymous social network. Momentum is special in the way that it lets you post. You get one chance each day to post that one awesome moment you lived. You can either post 140 characters, or one image. After that, you're not allowed to post for 24 hours. This allows Momentum's feed to stay thoughtful, without unnecessary posts that clutter most modern social streams.</p><br /><br />
@@ -406,10 +383,8 @@
 
     <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-
-    <script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
-    <script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
+    <script type='text/javascript' src='//cdn.firebase.com/js/client/1.0.17/firebase.js'></script>
+    <script type="text/javascript" src="//momentjs.com/downloads/moment.min.js"></script>
     <script>
 
     var canceledPostBool = false;
@@ -434,15 +409,6 @@
         $(".logIn").fadeIn();
       });
 
-      // var test = getCookie("loggedInUserName");
-      // if (test != "" || test != null) {
-      //   loggedInUserName = getCookie("loggedInUser");
-      //   redirectToFeed();
-      // }
-
-
-
-
       $("#newConfirmPassword").keydown(function(evt) {
         if (evt.which == 13) {
           var username = document.querySelector("#newUsername").value;
@@ -462,8 +428,6 @@
 
         }
       });
-
-
 
       $("#signUpNewUser").click(function() {
         var username = document.querySelector("#newUsername").value;
@@ -486,7 +450,6 @@
 
         var userAlreadyCreated = false; // firebase has a tendency to loop through the .on method multiple times. This prevents it from doing that
         
-
         user.on("value", function(data) {
           if (userAlreadyCreated == false) {
             userAlreadyCreated = true;
@@ -569,7 +532,6 @@
                 $("#header").append('<div class="postView"><center><div class=\"feed\"><div class="card poster"><input type="text" class="postTitle" placeholder="Title of your post" maxlength="100"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today? (140 characters max)" maxlength="140"></textarea><hr /><br /><center><div id="drop_zone">Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>');
 
         loadFeedCards();
-        // $("#header").append('<script type="text/javascript"\>var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); publicFeed.on(\'child_added\', function (snapshot) { if (snapshot.val().type == "text") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><p style="color:black;" class="displayContent">\' + snapshot.val().content + \'</p></div>\'); } else if (snapshot.val().type == "image") { $(".publicFeed").prepend(\'<div class="card"><h3>\' + snapshot.val().title + \'</h3><p class="postDate">\' + snapshot.val().date + \'</p><img class="postImageContent" src="\' + snapshot.val().content + \'"/></div>\'); } }); <\/script>');
 
       }
 
@@ -606,11 +568,7 @@
                       personalFeed.push({"title": postTitleContent, "content": postContent, "date": date, "type": "text", "likes": 0});
 
                       var time =  new Date().toString();
-                      // alert(time);
-
                       userInfo.set({"time": time});
-                      // alert("yo");
-
                       cancelCreatePost();
                       startTimer();
 
@@ -624,8 +582,6 @@
                       personalFeed.push({"title": postTitleContent, "content": image, "date": date, "type": "image", "likes": 0});
 
                       var time =  new Date().toString();
-                      // alert(time);
-
                       userInfo.set({"time": time});
 
                       cancelCreatePost();
@@ -640,24 +596,14 @@
       }
 
       function redirectToFeed() {
-        // alert("YO");
-        // $(".logout").show();
 
         $("#header").animate({height: '100%'}, 1000);
-        // $("#header").animate({width: '100%'}, 1000);
         $("#header").css("overflow", "hidden");
-        // $("#header").css("margin-top", "40px").append("<br /><br />");
-        // $("#header").css("overflow", "visible");
         $(".signUp").hide();
         $(".logIn").hide();
-        // $("#header").append("<hr style=\"width:80%\" />");
-
-        // loadFeedCards();
 
         $("#navUsername").html(loggedInUserName);
         $("#header").append('<div class="timeRemaining card" style="padding:15px;"><center><h2 id="untilNextTime" style="margin-top:-30px; color:#1abc9c;">00:00:00</h2></center></div><div class="postView"><center><div class=\"feed\"><div class="card poster"><input type="text" class="postTitle" placeholder="Title of your post" maxlength="100"/><hr id="textareaDropZoneDivide"/><textarea placeholder="What was your one awesome moment today? (140 characters max)" maxlength="140"></textarea><hr /><br /><center><div id="drop_zone">Drop your image here</div><output id="list"></output></center><br /><br /><button class="primary-btn post-btn" onclick="javascript: postMoment();">Post</button><button class="primary-btn cancel-btn" id="cancelBTN" onclick="javascript: cancelCreatePost();">Cancel</button></div><div class=\"publicFeed\"></div></div></center><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>');
-        // $("#header").append('<script type="text/javascript"\><\/script>');
-
 
         loadFeedCards();
 
@@ -669,19 +615,9 @@
           }
         });
 
-        // startTimer();
-
-
-
-
-        
-
-
-
       }
 
       function loadFeedCards() {
-        // alert("YO");
         var cancelPost = false;
 
         var publicFeed = new Firebase("https://momentum-db.firebaseio.com/feed"); 
@@ -689,19 +625,14 @@
         publicFeed.on("value", function (data_snapshot) { 
           wipeFeed();
           if (cancelPost == false) {
-            // cancelCreatePost();
-            // wipeFeed();
-            console.log("Hi");
             $(".publicFeed").html("");
             var dropZone = document.querySelector('#drop_zone');
           dropZone.addEventListener('dragover', handleDragOver, false);
           dropZone.addEventListener('drop', handleFileSelect, false);
             cancelPost = true;
           }
-          // alert("&0");
-          data_snapshot.forEach(function (snapshot) {
-            // cancelCreatePost();
 
+          data_snapshot.forEach(function (snapshot) {
             if (snapshot.val().type == "text") {
 
               $(".publicFeed").prepend('<div class="card"><h3>' + snapshot.val().title + '</h3><p class="postDate">' + snapshot.val().date + '</p><p style="color:black;" class="displayContent">' + snapshot.val().content + '</p></div>'); 
@@ -729,8 +660,7 @@
           
 
           var files = evt.dataTransfer.files; // FileList object.
-          // alert(file[0]);
-
+          
           // files is a FileList of File objects. List some properties.
           var output = [];
           for (var i = 0, f; f = files[i]; i++) {
@@ -756,7 +686,6 @@
 
                   imageUploadedString = e.target.result;
 
-                  // document.getElementById('list').insertBefore(span, null);
                 };
               })(f);
 
